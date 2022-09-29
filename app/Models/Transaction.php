@@ -12,11 +12,21 @@ class Transaction extends Model
 
     const TYPE_WITHDRAW = 'withdraw';
     const TYPE_DEPOSIT = 'deposit';
+    const TYPE_BETWEEN_WALLETS = 'between_wallets';
+
 
     const TYPES = [
         self::TYPE_WITHDRAW,
-        self::TYPE_DEPOSIT
+        self::TYPE_DEPOSIT,
+        self::TYPE_BETWEEN_WALLETS
     ];
+
+    protected $fillable = [
+       'amount',
+       'wallet_to',
+       'wallet_from',
+    ];
+
 
     public function wallets(): BelongsToMany
     {

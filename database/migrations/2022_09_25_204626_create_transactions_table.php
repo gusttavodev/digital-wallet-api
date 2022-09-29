@@ -17,8 +17,10 @@ class CreateTransactionsTable extends Migration
             $table->id();
 
             $table->bigInteger('amount');
-            $table->enum('type', ['withdraw', 'deposit']);
+            $table->enum('type', ['withdraw', 'deposit', 'between_wallets']);
 
+            $table->foreignId('wallet_from')->nullable()->references('id')->on('wallets')->onDelete('cascade');
+            $table->foreignId('wallet_to')->nullable()->references('id')->on('wallets')->onDelete('cascade');
 
             $table->timestamps();
         });

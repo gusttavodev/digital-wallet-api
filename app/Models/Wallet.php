@@ -25,4 +25,17 @@ class Wallet extends Model
     {
         return $this->belongsToMany(Transaction::class);
     }
+
+    public function getTotalAmountAttribute()
+    {
+        $transactions = $this->transactions()->get();
+        $total = $transactions->reduce(function ($total, $transaction) {
+            if ($transaction->type === Transaction::TYPE_WITHDRAW) {
+                return $total -= $transaction->amount;
+            }
+            return $total += $transaction->amount;
+        }, 0);
+
+        return $total;
+    }
 }
