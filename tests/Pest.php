@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Wallet;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -42,6 +42,7 @@ class WalletController extends Controller
     {
         auth()->user()
             ->wallets()
+            ->findOrFail($id)
             ->delete();
     }
 }
