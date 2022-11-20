@@ -10,8 +10,8 @@ class TransactionSeeder extends Seeder
 {
     public function run()
     {
-        Wallet::all()->each(fn ($value) => $value->transactions()->saveMany(
-            Transaction::factory(30)->create()
-        ));
+        // Wallet::all()->each(fn ($value) => $value->transactions()->saveMany(
+        //     Transaction::factory(30)->create()
+        // ));
     }
 }

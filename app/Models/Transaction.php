@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -23,6 +24,7 @@ class Transaction extends Model
 
     protected $fillable = [
        'amount',
+       'type',
        'wallet_to',
        'wallet_from',
     ];
@@ -31,5 +33,13 @@ class Transaction extends Model
     public function wallets(): BelongsToMany
     {
         return $this->belongsToMany(Wallet::class);
+    }
+
+    protected function value(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => $attributes['amount'] / 100,
+            set: fn ($value, $attributes) => $value * 100,
+        );
     }
 }

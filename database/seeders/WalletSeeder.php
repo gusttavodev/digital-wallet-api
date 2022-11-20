@@ -10,10 +10,12 @@ class WalletSeeder extends Seeder
 {
     public function run()
     {
-        User::all()->each(
-            fn ($value) => $value->wallets()->create(
-                Wallet::factory()->make()->toArray()
-            )
-        );
+        // for ($i=0; $i < 30; $i++) {
+        //     User::all()->each(
+        //         fn ($value) => $value->wallets()->create(
+        //             Wallet::factory()->make()->toArray()
+        //         )
+        //     );
+        // }
     }
 }

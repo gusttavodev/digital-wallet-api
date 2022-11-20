@@ -16,7 +16,7 @@ Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum')->n
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
 
 Route::resource('wallet', WalletController::class)->except([
-    'create', 'edit'
+    'create', 'edit',
 ])->middleware('auth:sanctum');
 
 

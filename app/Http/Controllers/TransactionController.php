@@ -14,12 +14,19 @@ class TransactionController extends Controller
         $inputs = $request->validated();
         $wallet = Wallet::find($inputs['wallet_id']);
 
+        if (!str_contains($inputs['amount'], '.')) {
+            $inputs['amount'] = $inputs['amount']."00";
+        } else {
+            $inputs['amount'] = round($inputs['amount'], 2)*100;
+        }
+
         if ($inputs['type'] === Transaction::TYPE_BETWEEN_WALLETS) {
             $this->walletTransaction($inputs);
             return;
         }
 
-        $wallet->transactions->attach(Transaction::create($inputs));
+
+        $wallet->transactions()->attach(Transaction::create($inputs));
     }
 
     private function walletTransaction(array $inputs): void

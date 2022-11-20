@@ -31,9 +31,9 @@ class Wallet extends Model
         $transactions = $this->transactions()->get();
         $total = $transactions->reduce(function ($total, $transaction) {
             if ($transaction->type === Transaction::TYPE_WITHDRAW) {
-                return $total -= $transaction->amount;
+                return $total -= $transaction->value;
             }
-            return $total += $transaction->amount;
+            return $total += $transaction->value;
         }, 0);
 
         return $total;

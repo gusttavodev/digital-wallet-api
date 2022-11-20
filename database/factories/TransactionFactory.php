@@ -10,7 +10,7 @@ class TransactionFactory extends Factory
     public function definition()
     {
         return [
-            'amount' => $this->faker->randomDigitNotNull(50, 500),
+            'amount' => $this->faker->numberBetween(1000, 90000),
             'type' => collect(Transaction::TYPES)->random()
         ];
     }

@@ -8,9 +8,9 @@ use Illuminate\Contracts\Validation\Rule;
 
 class WalletHaveAmout implements Rule
 {
-    protected string $message;
-    protected string $type;
-    protected string $walletId;
+    protected ?string $message;
+    protected ?string $type;
+    protected ?string $walletId;
 
     public function __construct($type, $walletId)
     {

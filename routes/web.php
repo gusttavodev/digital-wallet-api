@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Wallet;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\WalletResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    return WalletResource::collection(
+        Wallet::all()
+    );
+});
 
 Route::get('/', function () {
     return view('welcome');
